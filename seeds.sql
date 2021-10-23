@@ -42,3 +42,31 @@ VALUE ("Lawyer", 190000, 4);
 <-- role table seed end --> 
 
 
+INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
+VALUE ("John", "Doe", 1, null);
+
+INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
+VALUE ("Mike", "Chan", 2, "John Doe");
+
+INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
+VALUE ("Ashley", "Rodriguez", 3, null);
+
+INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
+VALUE ("Kevin", "Tupik", 4, "Ashley Rodriguez");
+
+INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
+VALUE ("Kunal", "Singh", 5, null);
+
+INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
+VALUE ("Malia", "Brown", 6, "Kunal Singh");
+
+INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
+VALUE ("Sarah", "Lourd", 7, null)
+
+INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
+VALUE ("Tom", "Allen", 8, "Sarah Lourd");
+<-- employee table seed end -->
+
+SELECT * FROM department_t;
+SELECT * FROM role_t;
+SELECT * FROM employee_t;
