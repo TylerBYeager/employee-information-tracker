@@ -1,5 +1,5 @@
 INSERT INTO department_t (name)
-VALUE 
+VALUE
 ("Sales");
 
 INSERT INTO department_t (name) 
@@ -7,11 +7,11 @@ VALUE
 ("Engineering");
 
 INSERT INTO department_t (name)
-VALUE 
+VALUE
 ("Finance");
 
 INSERT INTO department_t (name)
-VALUE 
+VALUE
 ("Legal");
 <-- department table seed end --> 
 
@@ -46,25 +46,25 @@ INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
 VALUE ("John", "Doe", 1, null);
 
 INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
-VALUE ("Mike", "Chan", 2, "John Doe");
+VALUE ("Mike", "Chan", 2, 1);
 
 INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
 VALUE ("Ashley", "Rodriguez", 3, null);
 
 INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
-VALUE ("Kevin", "Tupik", 4, "Ashley Rodriguez");
+VALUE ("Kevin", "Tupik", 4, 2);
 
 INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
 VALUE ("Kunal", "Singh", 5, null);
 
 INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
-VALUE ("Malia", "Brown", 6, "Kunal Singh");
+VALUE ("Malia", "Brown", 6, 3);
 
 INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
-VALUE ("Sarah", "Lourd", 7, null)
+VALUE ("Sarah", "Lourd", 7, null);
 
 INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
-VALUE ("Tom", "Allen", 8, "Sarah Lourd");
+VALUE ("Tom", "Allen", 8, 4);
 <-- employee table seed end -->
 
 SELECT * FROM department_t;

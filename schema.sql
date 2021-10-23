@@ -21,9 +21,9 @@ CREATE TABLE role_t
 
 DROP TABLE IF EXISTS employee_t;
 CREATE TABLE employee_t
-{   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+(   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     role_id INT,
     manager_id INT
-},
+);
