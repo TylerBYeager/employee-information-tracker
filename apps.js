@@ -14,4 +14,16 @@
 // add role =  enter name, salary, and department and role added to database
 // add employee = enter first name, last name, role, and manager, and added to database
 // update employee = select employee (by id) and change role, added to database. 
+const inquirer = require("inquirer");
+const mysql = require("mysql2");
+
+
+const db = mysql.createConnection({
+    host: "localhost",
+    port: 3001,
+    user: "root",
+    password: "password",
+    database: "company_db"
+});
+
 
