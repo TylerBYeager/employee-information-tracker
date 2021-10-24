@@ -3,13 +3,17 @@ const mysql = require("mysql2");
 
 
 
-// const db = mysql.createConnection({
-//     host: "localhost",
-//     port: 3001,
-//     user: "root",
-//     password: "password",
-//     database: "company_db"
-// });
+
+const db = mysql.createConnection(
+    {
+        host: "localhost",
+        user: "root",
+        password: "password",
+        database: "company_db"
+    },
+    console.log("success")
+);
+
 
 const questions = async () => {
     return inquirer
@@ -32,7 +36,11 @@ const questions = async () => {
         .then(response => {
             console.log(response);
             if (response.choice === "View all Departments?") {
-                console.log("Viewing all departments")
+                // console.log("You are now viewing all departments")
+                db.query("SELECT * FROM department_t;", function(err, res) {
+                    console.log(res); //database info added into conditional questions. 
+                });
+                questions(); 
             } else {
                 console.log("error");
             };
