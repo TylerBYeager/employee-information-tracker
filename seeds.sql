@@ -13,8 +13,7 @@ VALUE
 INSERT INTO department_t (name)
 VALUE
 ("Legal");
-<-- department table seed end --> 
-
+-- department table seed end -- 
 
 INSERT INTO role_t (title, salary, department_id)
 VALUE ("Sales Lead", 100000, 1);
@@ -39,7 +38,7 @@ VALUE ("Legal Team Lead", 250000, 4);
 
 INSERT INTO role_t (title, salary, department_id)
 VALUE ("Lawyer", 190000, 4);
-<-- role table seed end --> 
+-- role table seed end -- 
 
 
 INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
@@ -65,7 +64,7 @@ VALUE ("Sarah", "Lourd", 7, null);
 
 INSERT INTO employee_t (first_name, last_name, role_id, manager_id)
 VALUE ("Tom", "Allen", 8, 4);
-<-- employee table seed end -->
+-- employee table seed end --
 
 SELECT * FROM department_t;
 SELECT * FROM role_t;
