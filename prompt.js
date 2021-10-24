@@ -31,6 +31,11 @@ const questions = async () => {
         ])
         .then(response => {
             console.log(response);
+            if (response.choice === "View all Departments?") {
+                console.log("Viewing all departments")
+            } else {
+                console.log("error");
+            };
         });
 }
 questions();
