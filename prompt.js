@@ -125,7 +125,38 @@ const questions = () => {
                     questions();
                 });
             } else if (response.choice === "Update an existing employee's role?") {
-                console.log("no");
+                db.query("SELECT employee_t.last_name, role_t.title FROM employee_t JOIN role_t ON employee_t.role_id = role_t.id;", function(err, res) {
+                    inquirer.prompt([
+                        {
+                            name: "lastName",
+                            type: "rawlist",
+                            choices: function() {
+                                var lastName = [];
+                                for (var i = 0; i < res.length; i ++) {
+                                    lastName.push(res[i].last_name);
+                                }
+                                return lastName;
+                            },
+                            message: "What is the last name of the employee that you would like to update?",
+                        },
+                        {
+                            type: 'input',
+                            message: "What is the employees new role?",
+                            name :"role"
+                        },
+                    ]).then(update => {
+                        db.query("UPDATE employee_t SET WHERE ?",
+                        {
+                            last_name: update.lastName   
+                        },
+                        {
+                            role_id: update.role
+                        }), db.query("SELECT * FROM employee_t;", function(err, res) {
+                            console.table(res);
+                        });
+                        questions();
+                    });
+                });
             };
         });
 };
