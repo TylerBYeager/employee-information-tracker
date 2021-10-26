@@ -11,7 +11,7 @@
   ## Description  
   This employee information tracker app is a command line program that allows a user to create a database, seed it with information, and view that infomation in formatted tables. The user can then choose to add new departments, roles, employees, or even update an existing employees roles. 
 
-
+  VIEW THE APP AT WORK HERE: https://watch.screencastify.com/v/nimoKcXHElAGa8d3TaMw
 
   ## Code Snippets
   Here are some code snippets and what they accomplished. The first code snippet is an sql file that was used to create the database and the tables that are being used. 
