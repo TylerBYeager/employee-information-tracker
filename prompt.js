@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql2");
+const cTable = require("console.table")
 
 
 
@@ -15,7 +16,7 @@ const db = mysql.createConnection(
 );
 
 
-const questions = async () => {
+const questions = () => {
     return inquirer
         .prompt([
             {
@@ -37,13 +38,61 @@ const questions = async () => {
             console.log(response);
             if (response.choice === "View all Departments?") {
                 // console.log("You are now viewing all departments")
-                db.query("SELECT * FROM department_t;", function(err, res) {
-                    console.log(res); //database info added into conditional questions. 
+                db.query("SELECT department_t.name, department_t.id FROM department_t;", function(err, res) {
+                    console.table(res); //database info added into conditional questions. 
+                    
                 });
-                questions(); 
-            } else {
-                console.log("error");
+                questions();
+            } else if (response.choice === "View all employee roles?") {
+                db.query("SELECT role_t.title, role_t.id, department_t.name, role_t.salary FROM role_t JOIN department_t ON role_t.id = department_t.id;", function(err, res) {
+                    console.table(res);
+                });
+                
+                questions();
+            } else if (response.choice === "View all employees?") {
+                db.query("SELECT employee_t.id, employee_t.first_name, employee_t.last_name, role_t.title, employee_t.manager_id, role_t.salary FROM employee_t JOIN role_t ON employee_t.role_id = role_t.id;", function(err, res) {
+                    console.table(res);
+                });
+                questions();
+            } else if (response.choice === "Add new company department?") {
+                inquirer.prompt([
+                    {
+                        type: "input",
+                        message: "What is the name of the new department?",
+                        name: "name",
+                    }
+                ]).then(answer => {
+                    db.query("INSERT INTO department_t SET ?",
+                    {
+                        name: answer.name
+                    }), db.query("SELECT department_t.name, department_t.id FROM department_t;", function(err, res) {
+                        console.table(res);
+                    });
+                    questions();
+                });
+            } else if (response.choice === "Add new role within the company?") {
+                inquirer.prompt([
+                    {
+                        type: "input",
+                        message: "What is the name of the role to be added?",
+                        name: "title"
+                    },
+                    {
+                        type: "input",
+                        message: "What is the role's salary?",
+                        name: "salary" 
+                    },
+                ]).then(answers => {
+                    db.query("INSERT INTO role_t SET ?", 
+                    {
+                        title: answers.title,
+                        salary: answers.salary,
+                    }), db.query("SELECT role_t.title, role_t.id, department_t.name, role_t.salary FROM role_t JOIN department_t ON role_t.id = department_t.id;", function(err, res) {
+                        console.table(res);
+                    });
+                    questions()
+                })
             };
         });
-}
+};
 questions();
