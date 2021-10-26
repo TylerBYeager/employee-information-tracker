@@ -30,7 +30,7 @@ const questions = () => {
                     "Add new company department?",
                     "Add new role within the company?",
                     "Add new employee?",
-                    "Update and existing employee's role?"
+                    "Update an existing employee's role?"
                 ]
             },
         ])
@@ -87,11 +87,45 @@ const questions = () => {
                     {
                         title: answers.title,
                         salary: answers.salary,
-                    }), db.query("SELECT role_t.title, role_t.id, department_t.name, role_t.salary FROM role_t JOIN department_t ON role_t.id = department_t.id;", function(err, res) {
+                    }), db.query("SELECT * FROM role_t;", function(err, res) {
                         console.table(res);
                     });
-                    questions()
-                })
+                    questions();
+                });
+            } else if (response.choice === "Add new employee?") {
+                inquirer.prompt([
+                    {
+                        type: "input",
+                        message: "Enter their first name",
+                        name: "first_name"
+                    },
+                    {
+                        type: "input",
+                        message: "Enter their last name",
+                        name: "last_name"
+                    },
+                    {
+                        type: "input",
+                        message: "Enter their role in the company",
+                        name: "role"
+                    },
+                    {
+                        type: "input",
+                        message: "Who is their manager?",
+                        name: "manager"
+                    },
+                ]).then(employee => {
+                    db.query("INSERT INTO employee_t SET ?", 
+                    {
+                        first_name: employee.first_name,
+                        last_name: employee.last_name,
+                    }), db.query("SELECT * FROM employee_t;", function(err, res) {
+                        console.table(res);
+                    });
+                    questions();
+                });
+            } else if (response.choice === "Update an existing employee's role?") {
+                console.log("no");
             };
         });
 };
